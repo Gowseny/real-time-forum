@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> RT-Forum </title>
+    <link rel="shortcut icon" href="/css/img/chat.png">
+    <link rel ="stylesheet" href="/css/home.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+  />
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+/>
+  <script
+  src="https://kit.fontawesome.com/3c167d6bd6.js"
+  crossorigin="anonymous"
+></script>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+        <!-- 
+===========================================================================================================
+                               LEFT MAIN NAV LINK                                                    
+===========================================================================================================
+-->
+
+    <div id="Header">🅡🅔🅐🅛-🅣🅘🅜🅔-🅕🅞🅡🅤🅜</div>
+
+    <nav class="nav">
+        <a id="wName" style="display:none">𝕎𝔼𝕃ℂ𝕆𝕄𝔼</a>
+        <a id="current-user"></a>
+        <a id ="homePage" href = "/" onclick="e.preventDefault();" class="nav__link">ℍ𝕆𝕄𝔼-ℙ𝔸𝔾𝔼</a>
+        <a id ="register" onclick="openReg() ;"class="nav__link" style="display:block">ℝ𝔼𝔾𝕀𝕊𝕋𝔼ℝ</a>
+        <a id ="login" onclick="openLogin() ;"class="nav__link" style="display:block">𝕃𝕆𝔾-𝕚ℕ</a>
+        <!-- <a id ="post" onclick="refreshPosts() ;" class="nav__link">ℙ𝕠𝕤𝕥𝕤</a> -->
+        <a id="logout" href="/" onclick="Logout() ;" class="nav__link" style="display:none">𝕃𝕆𝔾-𝕆𝕌𝕋</a>   
+
+        <a id="profile" class="nav__link" style="display:none" onclick="showHideUserProfile() ;">ℙℝ𝕆𝔽𝕀𝕃𝔼</a> 
+
+         <!-- happy face emoji's -->
+    <a id="happyFace" style="display:none">
+        <img src="/css/img/thumbsup.gif" height="100%" width="100%" margin-left="20%">
+    </a>
+
+    <a id="byeFace" style="display:none">
+        <img id="byeFace" src="/css/img/bye.gif" height="90%" width="90%" margin-left="20%">
+    </a>  
+    
+      <!-- loggen on configm popup -->
+      <a id="LoggedOn" style="display:none">
+        <h4>
+            You're are Logged in.
+        </h4>
+    </a>
+
+
+    <!-- registration confirmed pop-up -->
+    <div id="regConfirmed" style="display:none">
+        <h4>
+            You're are now Registered
+      
+        </h4>
+    </div>
+
+        <!-- registration invalid pop-up -->
+    <div id="regRejected" style="display:none">
+        <h4>
+            Sorry Error with Registration
+            <h5></h5>
+
+        </h4><img src="/css/img/sad.gif" alt="" srcset="" height="25%" width="25%">
+    </div>
+
+
+        <!-- loggen on configm popup -->
+        <div id="LoggedOut" style="display:none">
+            <h4>
+                You're are Logged Out.
+            </h4>
+        </div>
+
+
+    </nav>
+
+       <!-- 
+===========================================================================================================
+                               RIGHT CHAT NAV LINK                                                     
+===========================================================================================================
+-->
+
+    <!-- <nav class="chat">
+        <a id="welcomemsg">𝕎𝔼𝕃ℂ𝕆𝕄𝔼 𝕋𝕆 ℝ𝔼𝔸𝕃 𝕋𝕀𝕄𝔼 𝔽𝕆ℝ𝕌𝕄 𝕃𝕆𝔾𝕀ℕ 𝕆ℝ ℝ𝔼𝔾𝕀𝕊𝕋𝔼ℝ!</a>
+        <a id ="Messenger" style="display:none">𝕄𝔼𝕊𝕊𝔼ℕ𝔾𝔼ℝ</a>
+        <div id="log"></div>
+        <form class="modal-content animate" action="/chat" id="formChat">
+            <input type="submit" id="button" value="Send" />
+            <input type="text" id="msg" size="64" autofocus />
+        </form>
+
+        <a id="usersLog" class="loggedInUsers" style="display:none"><strong>𝕌𝕊𝔼ℝ𝕊 𝕆ℕ𝕃𝕀ℕ𝔼</strong></a>
+        <a id="Offline" class="OfflineUsers" style="display:none"><strong>𝕌𝕊𝔼ℝ𝕊 𝕆𝔽𝔽𝕃𝕀ℕ𝔼</strong></a> -->
+
+        <nav class="loggedInUsers" id="chatNav" style="display:block">
+        <a id="welcomemsg">𝕎𝔼𝕃ℂ𝕆𝕄𝔼 𝕋𝕆 ℝ𝔼𝔸𝕃 𝕋𝕀𝕄𝔼 𝔽𝕆ℝ𝕌𝕄 𝕃𝕆𝔾𝕀ℕ 𝕆ℝ ℝ𝔼𝔾𝕀𝕊𝕋𝔼ℝ!</a>
+
+            <a id="Select User" class="loggedInUsers__link" data-link style="display:none"
+              ><strong>𝕄𝔼𝕊𝕊𝔼ℕ𝔾𝔼ℝ</strong></a
+            >
+            <div id="usersLog"></div> 
+
+        </nav>
+
+       <div class="chat-private" id="chat-private"></div>
+
+<!-- ===========================================================================================================
+                                    CREATE POST BLOCK                                                       
+===========================================================================================================
+--> 
+
+    <div id="postBlock" class="posts" style="display:none">
+        <label for="PostTitle">Post Title:</label>
+        <br>
+        <textarea name="postTitle" type="text" rows="1" cols="80" id="PostTitle" name="Title" placeholder="Enter Title..."></textarea>
+        <br>
+        <label for="Post Cat">Catergory:</label>
+        <br>
+        <select id="PostCat">
+            <option value="0" selected>-- Select --</option>
+            <option value="1">Sports</option>
+            <option value="2">Weather</option>
+            <option value="3">Social</option>
+            <option value="4">Gaming</option>
+            <option value="5">Other</option>
+          </select>
+          <br>
+        <label for="Post Content"> Content:  </label>
+        <br>
+        <textarea name="postinput" type="text" rows="4" cols="80" id="PostContent" name="Content" placeholder="Description..."></textarea>
+        <button class="button" id="addPost" type="submit" style="display:none">Create Post</button>
+    </div>
+
+       <!-- 
+===========================================================================================================
+                                       POST FEED DISPLAY MODAL                                                         
+===========================================================================================================
+ -->
+
+    <div id="postList" style.z-index="0">
+      
+    </div>
+
+            <!-- 
+
+===========================================================================================================
+                                       POST FEED DISPLAY MODAL                                                         
+===========================================================================================================
+ -->
+
+ <div id="postListAfterLogin">
+      
+ </div>
+
+         <!-- 
+
+===========================================================================================================
+                                       EXPANDED POSTS FEED WITH COMMENTS                                                         
+===========================================================================================================
+ -->
+
+ <!-- <div id="postListExpanded" class="posts" style="display:none">
+    <h6> EXPANDED POST WILL APPEAR HERE WITH COMMENTS ALSO</h6>
+  
+ </div> -->
+
+        <!-- 
+===========================================================================================================
+                                       LOGIN MODAL                                                         
+===========================================================================================================
+ -->
+
+
+    <div id="loginModal" class="modal"> 
+        <div class="modal-content animate">
+
+            <form id="loginform" class="form" action="/" >
+                <div class="imgcontainer">
+                 <img src="/css/img/user-group-man-woman.png" height="250px" width="300px" alt="Avatar" class="avatar">
+                </div> 
+               
+         
+                <div class="container">
+                 <h1>🅻🅾🅶🅸🅽</h1>
+                
+                 <div class="login-form-control">
+                    <label for="userName"><b>UserName Or Email</b></label>
+                    <input type="text" id="LUserName" placeholder="Enter Username" name="UserName" required>
+                    <i class="fa-regular fa-circle-check"></i>
+                    <i class="fa-regular fa-exclamation"></i>
+                    <small>Error Message</small>
+                 </div>
+                
+                 
+                <div class="login-form-control">    
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" id="LPassW" placeholder="Enter Password" name="psw" required>
+                    <i class="far fa-eye" id="togglePassword" style="cursor: pointer; visibility: visible;"></i>
+                    <i class="fa-regular fa-circle-check"></i>
+                    <i class="fa-regular fa-exclamation"></i>
+                    <small>Error Message</small>
+                </div>
+             
+         
+                 <button class="button" id="loginBtn" type="submit">Login</button>
+         
+                 <label>
+                     <input type="checkbox" checked="checked" name="remember"> Remember Me
+                 </label>
+         
+                 <button id="cancelbtn" type="button" onclick="document.getElementById('loginModal').style.display='none'; closeBtn()" class="button">Cancel</button>
+                 
+                 <span class="psw">New User Please👇 </span>
+         
+                 <button type="button" onclick="openReg(); " class="button" href="/registration">Register</button>
+         
+                </div>
+                </form>
+
+        </div>
+       
+        
+
+    </div>
+
+
+    <!-- 
+===========================================================================================================
+                                             REGISTER MODAL                                                    
+===========================================================================================================
+-->
+
+    <div id="regModal" class="modal">     
+       
+        <div class="modal-content animate">
+            <form id="regform" class="form" action="register.js" method="post">
+
+       <div class="imgcontainer">
+        <img src="/css/img/user-group-man-woman.png" height="230px" width="290px" alt="Avatar" class="avatar">
+       </div> 
+       
+
+       <div class="container" id="form"> 
+        <h2>🆁🅴🅶🅸🆂🆃🅴🆁</h2>
+
+        <div class="reg-form-control">
+            <label for="FirstName"><b>First Name</b></label>
+            <input id="FirstName" type="text" placeholder="Enter First Name" name="FirstName" required>
+            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-exclamation"></i>
+            <small>Error Message</small>
+        </div>
+       
+
+        <div class="reg-form-control">
+            <label for="LastName"><b>Last Name</b></label>
+            <input id="LastName" type="text" placeholder="Enter Last Name" name="Last Name" required>
+            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-exclamation"></i>
+            <small>Error Message</small>
+
+        </div>
+        
+
+        <div class="reg-form-control">
+            <label for="NickName"><b>NickName</b></label>
+            <input id="NickName" type="text" placeholder="Create UserName" name="Nick Name" required  minlength="4" maxlength="10">
+            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-exclamation"></i>
+            <small>Error Message</small>
+        </div>
+        
+
+        <div class="reg-form-control">
+             <label for="Age"><b>Age</b></label>
+            <input id="Age" type="number" placeholder="Enter Age" name="Age" required>
+            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-exclamation"></i>
+            <small>Error Message</small>
+        </div>
+       
+
+        <div class="reg-form-control">
+             <label  for="Gender"><b>Gender</b></label>
+            <input id="Gender" type="text" placeholder="Enter Gender" name="Gender" required>
+            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-exclamation"></i>
+            <small>Error Message</small>
+        </div>
+       
+        
+        <div class="reg-form-control">
+             <label for="Email"><b>Email</b></label>
+            <input id="Email" type="email" onkeydown="validation()" size="30" placeholder="Enter Email Address" name="Email" required>
+            <span id="text"></span>
+            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-exclamation"></i>
+            <small>Error Message</small>
+        </div>
+       
+        <div class="reg-form-control">
+             <label for="psw"><b>Password</b></label>
+            <input id="PassWord" type="password" placeholder="Enter Password" name="psw" required>
+            <i class="far fa-eye" id="togglePassword" style="cursor: pointer; visibility: visible;"></i>
+            <i class="fa-regular fa-circle-check"></i>
+            <i class="fa-regular fa-exclamation"></i>
+            <small>Error Message</small>
+        </div>
+       
+
+        
+      <span>
+        <button class="button1" id="registerBtn" type="submit">Register</button>
+        
+        <button id="cancelbtn" type="button" onclick="document.getElementById('regModal').style.display='none'; closeBtn()" class="button1">Cancel</button>
+       
+      </span>
+       
+       </div>
+    </form>
+    </div>
+    </div>
+
+        <!-- 
+===========================================================================================================
+                                           NOTIFYING ERRORS ETC                                                    
+===========================================================================================================
+-->
+
+
+   
+
+
+
+
+
+
+
+  
+
+
+        <div id="logRejected" style="display:none">
+            <h4>
+                Invalid UserName or Password!
+            </h4>
+            <h4>
+               Check UserName or Password!
+            </h4><img src="/css/img/sad.gif" alt="" srcset="" height="25%" width="25%">
+        </div>
+
+        <!-- 
+===========================================================================================================
+                                           PROFILE MOD                                                    
+===========================================================================================================
+-->
+
+<div id="profileMod" class="profmodal" style.display="none">
+    <img id="profilePic" src="/css/img/happy.gif" height="15%" width="15%">
+    <h3>🅿🆁🅾🅵🅸🅻🅴</h3>
+    <div id="WelMsg">
+    </div>
+    <br>
+    <br>
+    <div id="firstName">
+    </div>
+    <div id="lastName">
+     
+    </div>
+    <div id="nickName">
+     
+    </div>
+    <div id="age">
+        
+    </div>
+    <div id="gender">
+ 
+    </div>
+    <div id="email">
+       
+    </div>
+    
+
+</body>
+
+
+
+
+<!-- this script runs login modal -->
+<script src="/js/buttons.js"></script>
+<script src="/js/register.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/post.js"></script>
+<script src="/js/comment.js"></script>
+<!-- <script src="/js/messenger.js"></script> -->
+
+
+</html>
